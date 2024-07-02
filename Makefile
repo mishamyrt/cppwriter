@@ -30,6 +30,7 @@ lint:
 publish: build
 	git add Makefile
 	git commit -m "chore: release $(VERSION)"
+	git tag -a $(VERSION) -m "release $(VERSION)"
 	$(VENV) python -m twine upload --repository pypi dist/*
 
 configure:
