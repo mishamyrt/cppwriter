@@ -2,6 +2,14 @@
 from .block import Block
 
 
+def format_function_header(name: str, return_type: str, args: list = None) -> str:
+    """Returns function name"""
+    header = f"{return_type} {name}("
+    if args is not None:
+        header += ", ".join(args)
+    header += ")"
+    return header
+
 class FunctionBlock(Block):
     """C/C++ function body block"""
     _curly_wrapped: bool

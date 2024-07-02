@@ -1,7 +1,7 @@
 """C++ writer file block"""
 from .block import Block
 from .block_enum import EnumBlock
-from .block_function import FunctionBlock
+from .block_function import FunctionBlock, format_function_header
 
 
 class FileBlock(Block):
@@ -20,11 +20,19 @@ class FileBlock(Block):
         """Adds pragma statement to file"""
         self.line(f"#pragma {value}", semi=False)
 
-    def function(self, header: str) -> FunctionBlock:
+    def function(self, name: str, return_type: str, args: list = None) -> FunctionBlock:
         """Creates function block"""
-        block = FunctionBlock(header, self._indent_char)
+        block = FunctionBlock(
+            format_function_header(name, return_type, args),
+            self._indent_char)
         self._body.append(block)
         return block
+
+    def function_prototype(self, name: str, return_type: str, args: list = None) -> None:
+        """Creates function block"""
+        self.line(
+            format_function_header(name, return_type, args) + ";",
+            semi=False)
 
     def enum(self, name: str, enum_type: str = None) -> EnumBlock:
         """Creates enum block"""
