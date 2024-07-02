@@ -27,11 +27,14 @@ lint:
 	$(VENV) ruff check ./cppwriter
 
 .PHONY: publish
-publish: build
+publish:
+	$(MAKE) clean
+	$(MAKE) build
 	git add Makefile
 	git commit -m "chore: release $(VERSION)"
 	git tag -a $(VERSION) -m "release $(VERSION)"
 	$(VENV) python -m twine upload --repository pypi dist/*
+	git push && git push --tags
 
 configure:
 	rm -rf $(VENV_PATH)
