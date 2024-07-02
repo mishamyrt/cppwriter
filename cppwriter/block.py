@@ -33,6 +33,10 @@ class Block:
         self._body.append(block)
         return block
 
+    def add_block(self, block: Block) -> None:
+        """Adds a block to the block body"""
+        self._body.append(block)
+
     def __str__(self) -> str:
         """Returns block content"""
         return self._join_body()

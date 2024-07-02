@@ -2,7 +2,7 @@
 from test_config import INDENT_CHAR
 from test_utils import strip_nl
 
-from cppwriter import FileBlock
+from cppwriter import EnumBlock, FileBlock
 
 
 def test_include():
@@ -60,6 +60,19 @@ def test_enum():
     enum = file.enum("Color")
     enum.item("Red")
     assert str(file) == strip_nl("""
+enum Color {
+    Red,
+};
+""")
+
+def test_add_block():
+    """Test add block"""
+    file = FileBlock(INDENT_CHAR)
+    file.include("stdio.h", is_global=True)
+    enum = EnumBlock.from_list("Color", ["Red"], INDENT_CHAR)
+    file.add_block(enum)
+    assert str(file) == strip_nl("""
+#include <stdio.h>
 enum Color {
     Red,
 };
