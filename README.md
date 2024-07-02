@@ -1,4 +1,4 @@
-# C++ writer
+# C++ writer [![Quality assurance](https://github.com/mishamyrt/cppwriter/actions/workflows/qa.yaml/badge.svg)](https://github.com/mishamyrt/cppwriter/actions/workflows/qa.yaml) [![PyPI version](https://badge.fury.io/py/cppwriter.svg)](https://badge.fury.io/py/cppwriter)
 
 The library provides an iterative interface for generating C/C++ code from Python.
 
