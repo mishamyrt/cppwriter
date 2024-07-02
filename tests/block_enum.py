@@ -1,7 +1,14 @@
+"""Enum block tests"""
 from test_config import INDENT_CHAR
 from test_utils import strip_nl
 
-from cppwriter import EnumBlock
+from cppwriter.block_enum import EnumBlock, format_enum_header
+
+
+def test_format_enum_header():
+    """Test enum name formatting"""
+    assert format_enum_header("foo") == "enum foo"
+    assert format_enum_header("foo", "int") == "enum foo : int"
 
 
 def test_typed():

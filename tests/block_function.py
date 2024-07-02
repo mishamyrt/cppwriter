@@ -1,8 +1,14 @@
+"""Function block tests"""
 from test_config import INDENT_CHAR
 from test_utils import strip_nl
 
-from cppwriter import FunctionBlock
+from cppwriter.block_function import FunctionBlock, format_function_header
 
+
+def test_format_function_header():
+    """Test function name formatting"""
+    assert format_function_header("foo", "int") == "int foo()"
+    assert format_function_header("foo", "int", ["int a", "int b"]) == "int foo(int a, int b)"
 
 def test_basic_function_block():
     """Test enum generation"""
@@ -85,7 +91,7 @@ int main() {
     }
 }
 """)
-    
+
 def test_for_statement():
     """Test for statement generation"""
     func = FunctionBlock("int main()", INDENT_CHAR)
